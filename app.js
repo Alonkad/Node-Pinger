@@ -9,8 +9,10 @@ var Ping = require('./lib/ping'),
  
 websites.forEach(function (website) {
     var monitor = new Ping ({
+        alias: website.alias,
         website: website.url,
-        timeout: website.timeout
+        interval: website.interval,
+        validate: (typeof website.validate === 'function') ? website.validate : null
     });
     
     urls.push(website.url);
@@ -18,6 +20,7 @@ websites.forEach(function (website) {
 });
  
  
+//TODO: Create admin for managing websites
 server = http.createServer(function (req, res) {
     var data = "Monitoring the following websites: \n \n" + urls.join("\n");
  
