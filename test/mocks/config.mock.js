@@ -1,5 +1,5 @@
 module.exports = {
-    pingOnStart: false,
+    pingOnStart: true,
     logResults: false,
     strikes: 1,
     stopOnLastStricke: true,
