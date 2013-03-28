@@ -4,6 +4,7 @@
     "dependencies":{
         "mocha":"~1.8.2",
         "should":"~1.2.2",
-        "rewire":"~1.1.2"
+        "rewire":"~1.1.2",
+        "sinon": "~1.6.0"
     }
 }

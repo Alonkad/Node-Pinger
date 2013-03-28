@@ -1,6 +1,6 @@
 module.exports = {
     pingOnStart: false,
-    logResults: false,
+    log: false,
     strikes: 1,
     stopOnLastStricke: true,
 
@@ -23,7 +23,7 @@ module.exports = {
             content: function(alias, url, statusCode, statusCodeMsg) {
                 //Edit the mail body as you like
 
-                time =  module.exports.mail.utils.getFormatedDate(Date.now());
+                var time =  module.exports.mail.utils.getFormatedDate(Date.now());
                 var htmlMsg = '<p>Time: ' + time + '</p>';
                 htmlMsg +='<p>Website: ' + ((alias !== url) ? (alias + ' (' + url + ')') : url) + '</p>';
                 htmlMsg += '<p>Message: ' + statusCodeMsg + ' (' + statusCode + ')</p>';
