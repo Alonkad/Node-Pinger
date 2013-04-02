@@ -26,5 +26,12 @@ module.exports = [
         alias: 'Pinger Test',
         url: 'http://cap1dev.conduit-apps.com/Apps/alon/pingerTest/test.php',
         interval: 5
+    },
+
+    {
+        //Pinger App (so Heroku won't shut it down after an hour)
+        alias: 'Pinger App',
+        url: 'http://shielded-ravine-7847.herokuapp.com/',
+        interval: 15
     }
 ];
