@@ -122,7 +122,8 @@ describe('Common responses', function () {
         },
         statusCodesToCheck = [200, 404, 500],
         statusCodeIndex = 0,
-        spy;
+        okSpy,
+        notOkSpy;
 
     before(function (done) {
 
@@ -136,11 +137,11 @@ describe('Common responses', function () {
         });
         statusCodeIndex++;
 
-        spy = sinon.spy();
+        okSpy = sinon.spy();
+        notOkSpy = sinon.spy();
 
-        Ping.__set__({
-            isOk: spy
-        });
+        Ping.prototype.isOk = okSpy;
+        Ping.prototype.isNotOk = notOkSpy;
 
         //Re-create the monitor with the mocked request object
         monitor = new Ping(monitorConfig);
@@ -150,21 +151,24 @@ describe('Common responses', function () {
 
     describe('200', function () {
         it('should have an alias attribute', function () {
-            spy.called.should.equal(true);
+            okSpy.called.should.equal(true);
+            notOkSpy.called.should.equal(false);
         });
     });
 
-    /*describe('404', function () {
+    describe('404', function () {
         it('should have an alias attribute', function () {
-            monitor.should.have.property('alias', monitorConfig.alias);
+            okSpy.called.should.equal(false);
+            notOkSpy.called.should.equal(true);
         });
     });
 
     describe('500', function () {
         it('should have an alias attribute', function () {
-            monitor.should.have.property('alias', monitorConfig.alias);
+            okSpy.called.should.equal(false);
+            notOkSpy.called.should.equal(true);
         });
-    });*/
+    });
 });
 
 //endregion Handle common responses test suit
