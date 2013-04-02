@@ -32,6 +32,6 @@ module.exports = [
         //Pinger App (so Heroku won't shut it down after an hour)
         alias: 'Pinger App',
         url: 'http://shielded-ravine-7847.herokuapp.com/',
-        interval: 15
+        interval: 5
     }
 ];
