@@ -1,7 +1,7 @@
 module.exports = {
-    pingOnStart: false,
+    pingOnStart: true,
     log: false,
-    strikes: 1,
+    strikes: 2,
     stopOnLastStricke: true,
 
     mail: {
