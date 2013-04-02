@@ -23,8 +23,8 @@ module.exports = [
  
     {
         //Test
-        alias: 'Error Test',
-        url: 'http://cap1dev.conduit-apps.com/Apps/alon/error.php',
+        alias: 'Pinger Test',
+        url: 'http://cap1dev.conduit-apps.com/Apps/alon/pingerTest/test.php',
         interval: 5
     }
 ];
