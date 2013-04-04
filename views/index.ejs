@@ -1,5 +1,23 @@
 <% layout('layout') -%>
 
 <div ng-controller="indexCtrl">
-    <p>{{name}}</p>
+    <table id="monitorsTbl" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Alias</th>
+                <th>Url</th>
+                <th>Interval</th>
+                <th>Strikes</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in monitors">
+            <!--<td><button id="playBtn" class="btn" ng-click="playVideo(item)"><i class="icon-play"></i></button></td>-->
+            <td>{{(item.alias) && item.alias || ''}}</td>
+            <td>{{item.website}}</td>
+            <td>{{item.interval}}</td>
+            <td>{{item.strikes}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

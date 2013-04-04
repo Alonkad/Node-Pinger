@@ -3,17 +3,10 @@
 
     /* Controllers */
 
-    window.indexCtrl = function($scope, $http, Monitor) {
-        /*$http({method:'GET', url:'/api/name'}).
-            success(function (data, status, headers, config) {
-                $scope.name = data.name;
-            }).
-            error(function (data, status, headers, config) {
-                $scope.name = 'Error!'
-            });*/
+    angular.module('pingerAdmin').controller('indexCtrl', function($scope, $http, Monitor) {
 
-        Monitor.list();
-
-        $scope.name = 'alon';
-    };
+        Monitor.list(function(data){
+            $scope.monitors = data;
+        });
+    });
 })();

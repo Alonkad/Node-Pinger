@@ -8,8 +8,20 @@ var adminUser = {
         password: '1'
     },
     server,
-    urls = [],    
     monitors = [];
+
+
+websites.forEach(function (website) {
+    var monitor = new Ping ({
+        alias: website.alias,
+        website: website.url,
+        interval: website.interval,
+        validate: (typeof website.validate === 'function') ? website.validate : null
+    });
+
+    monitors.push(monitor);
+});
+
 
 //General app configurations (middlewares)
 var app = express();
@@ -67,9 +79,31 @@ app.post('/login', function (req, res) {
 });
 
 
+//Logout action handler
 app.get('/logout', function (req, res) {
     req.session.user_id = '';
     res.render('login', { user: '', message: '' });
+});
+
+
+//Monitors REST Api
+app.get('/monitors/:action', function (req, res) {
+    if (!req.params || !req.params.action) {
+        res.json({
+            error: 'Action not specified'
+        });
+        return;
+    }
+
+    switch (req.params.action) {
+        case 'list':
+            res.json(monitors);
+            break;
+        default:
+            res.json({
+                error: 'Action not supported'
+            });
+    }
 });
 
 
@@ -90,20 +124,7 @@ app.listen(port, function(){
 
 
  
-/*
-websites.forEach(function (website) {
-    var monitor = new Ping ({
-        alias: website.alias,
-        website: website.url,
-        interval: website.interval,
-        validate: (typeof website.validate === 'function') ? website.validate : null
-    });
-    
-    urls.push(website.url);
-    monitors.push(monitor);
-});*/
- 
- 
+
 //TODO: Create admin for managing websites
 /*server = http.createServer(function (req, res) {
     var data = "Monitoring the following websites: \n \n" + urls.join("\n");
